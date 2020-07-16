@@ -34,41 +34,31 @@ app.get("/reserve", function(req, res) {
 
 // information being pulled from array into tables/reserve page
 app.get("/api/tables", function(req, res) {
-   
+    res.json(tables);
+ 
 
     
 
 })
-app.get("/api/reserve", function(req,res) { 
-    
-     
+app.get("/api/waitlist", function(req,res) { 
+   res.json(waitlist);
+    })
 
-    
-    console.log(waitlist)
-    
-})
+
 // Puts the information in the api to update and display on html
 app.post("/api/tables", function(req, res) {
-    var newTable = req.body;
-
-    console.log(newTable)
     
-    tables.push(newTable);
-
-    res.json(newTable)
-
-})
-
-app.post("/api/reserve", function(req, res) {
-    var newReservation = req.body
-    console.log(newReservation)
-
-    reservation.push(newReservation)
+  if (tables.length  < 5) { 
+       tables.push(req.body);
+       return res.json(true);
+    } else {
+        waitlist.push(req.body);
+        return res.json(false)
+    }
  
-     
-        
-    res.json(newReservation)
+
 })
+
 
 app.listen(PORT, function(){
     console.log("App listining on PORT" + PORT)
