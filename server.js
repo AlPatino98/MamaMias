@@ -14,7 +14,6 @@ app.use(express.json());
 
 // variable arra will go here for entered data
 let tables = [];
-let reservation = [];
 let waitlist = [];
 // Routes
 app.get("/",  function(req,res) {
